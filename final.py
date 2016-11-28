@@ -83,7 +83,8 @@ for rw in range(1, worksheet.nrows):
 	print name +" " + email +" " + course +" " + lic_no
 	print
 	toaddr = email
-	 
+	name_array=name.split()
+	print name_array[0]
 
 	msg = MIMEMultipart('alternative')
 	 
@@ -97,7 +98,7 @@ for rw in range(1, worksheet.nrows):
 		<head></head>
 		<body>
 		<p>
-Dear  Learner,
+Dear  %s,
 <br></br>
 <br></br>
 We thank you for attending our <b> %s Classes </b> & hope you enjoyed the sessions much as we enjoyed teaching you.
@@ -138,7 +139,7 @@ Skillspeed Support Team
 </p>
 </body>
 </html>
-""" % (course, course, course, course_url,lic_no, lic_date)
+""" % (name_array[0],course, course, course, course_url,lic_no, lic_date)
 	 
 	msg.attach(MIMEText(body, 'html'))
 	 
