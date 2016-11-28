@@ -80,7 +80,7 @@ for rw in range(1, worksheet.nrows):
 	#print lic_date
 	#email code
 	fromaddr = "support@skillspeed.com"
-	print name +" " + email+" " + lic_no
+	print name +" " + email +" " + course +" " + lic_no
 	print
 	toaddr = email
 	 
@@ -107,7 +107,7 @@ We congratulate you on attending both the days of our <b>%s Classes </b>, and th
 <br></br>
 <br></br>
 Add your certificate to Linkedin
-<div><a href="https://www.linkedin.com/profile/add?_ed=0_JhwrBa9BO0xNXajaEZH4q9ZriGQBiq56O8XQeptEb_xAD6iVbtTHBphjlBeRBwz4aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=%s&pfLicenseNo=%s&pfCertStartDate=%s&pfCertFuture=210001&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
+<div><a href="https://www.linkedin.com/profile/add?_ed=0_JhwrBa9BO0xNXajaEZH4q9ZriGQBiq56O8XQeptEb_xAD6iVbtTHBphjlBeRBwz4aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=%s&pfLicenseNo=%s&pfCertStartDate=%s&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
 <br></br>
 <br></br>
 If you would like to carry on in this path and learn more and secure a job, then please contact our team about our Advance Course at sales@skillspeed.com.
@@ -134,10 +134,11 @@ Please do spread the word about our sessions and like us on Facebook & leave a c
 <br></br>
 Skillspeed Support Team
 <br></br></b>
+<div><a href="http://www.facebook.com/SkillspeedOnline"><img src="http://www.mail-signatures.com/articles/wp-content/themes/emailsignatures/images/facebook-35x35.gif"></a><a href="http://www.linkedin.com/company/skillspeed"><img src="http://www.mail-signatures.com/articles/wp-content/uploads/2014/08/linkedin.png" width="35" height="35"></a></div>
 </p>
 </body>
 </html>
-""" % (course, course, course, course_url,lic_no,lic_date)
+""" % (course, course, course, course_url,lic_no, lic_date)
 	 
 	msg.attach(MIMEText(body, 'html'))
 	 
