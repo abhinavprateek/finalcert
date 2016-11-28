@@ -111,7 +111,7 @@ Add your certificate to Linkedin
 <div><a href="https://www.linkedin.com/profile/add?_ed=0_JhwrBa9BO0xNXajaEZH4q9ZriGQBiq56O8XQeptEb_xAD6iVbtTHBphjlBeRBwz4aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=%s&pfLicenseNo=%s&pfCertStartDate=%s&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
 <br></br>
 <br></br>
-If you would like to carry on in this path and learn more and secure a job, then please contact our team about our Advance Course at sales@skillspeed.com.
+If you would like to carry on in this path and learn more and secure a job, then please contact our team about Advance Courses at sales@skillspeed.com.
 <br></br>
 <br></br>
 USA & Rest of World: +1-661-241-4796
@@ -130,12 +130,12 @@ If you have any pending technical queries regarding practicals or VM, please wri
 <br></br>
 Please do spread the word about our sessions and like us on Facebook & leave a comment about your thoughts.
 <br></br>
+<div><a href="http://www.facebook.com/SkillspeedOnline"><img src="http://www.mail-signatures.com/articles/wp-content/themes/emailsignatures/images/facebook-35x35.gif"></a><a href="http://www.linkedin.com/company/skillspeed"><img src="http://www.mail-signatures.com/articles/wp-content/uploads/2014/08/linkedin.png" width="35" height="35"></a></div>
 <br></br>
 <b>Thanks & Regards,
 <br></br>
 Skillspeed Support Team
 <br></br></b>
-<div><a href="http://www.facebook.com/SkillspeedOnline"><img src="http://www.mail-signatures.com/articles/wp-content/themes/emailsignatures/images/facebook-35x35.gif"></a><a href="http://www.linkedin.com/company/skillspeed"><img src="http://www.mail-signatures.com/articles/wp-content/uploads/2014/08/linkedin.png" width="35" height="35"></a></div>
 </p>
 </body>
 </html>
