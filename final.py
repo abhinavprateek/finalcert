@@ -20,11 +20,14 @@ workbook = xlrd.open_workbook(file_name)
 worksheet=workbook.sheet_by_index(0)
 num_row=worksheet.nrows-1
 num_cell=worksheet.ncols-1
+time_folder= time.strftime("%Y-%m-%d")
 for rw in range(1, worksheet.nrows):
 	name,email,grade,course,lic_no = [data.value for data in worksheet.row(rw)]
 	#print lic_no
-	if not os.path.exists('/home/skillspeed/finalcert/cert/%s' % (course,)):
-		os.makedirs('/home/skillspeed/finalcert/cert/%s' % (course,))
+	if not os.path.exists('/home/skillspeed/finalcert/cert/%s' % (time_folder,)):
+		os.makedirs('/home/skillspeed/finalcert/cert/%s' % (time_folder,))
+	if not os.path.exists('/home/skillspeed/finalcert/cert/%s/%s' % (time_folder,course,)):
+		os.makedirs('/home/skillspeed/finalcert/cert/%s/%s' % (time_folder,course,))
 #this will define the ELEMENTS that will compose the template. 
 	elements = [
 	    { 'name': 'company_logo', 'type': 'I', 'x1': 68.0, 'y1': 9.0, 'x2': 150.0, 'y2': 38.0, 'font': None, 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': 'logo', 'priority': 2, },
@@ -48,7 +51,7 @@ for rw in range(1, worksheet.nrows):
 
 	#here we instantiate the template and define the HEADER
 	f = Template(format="A5",orientation ="L", elements=elements,
-		     title="Sample Invoice")
+		     title="Certificate")
 	f.add_page()
 
 	#we FILL some of the fields of the template with the information we want
@@ -72,7 +75,7 @@ for rw in range(1, worksheet.nrows):
 	f["license"]= "License No - " + lic_no
 
 	#and now we render the page
-	f.render("/home/skillspeed/finalcert/cert/%s/%s.pdf" % (course,name,))
+	f.render("/home/skillspeed/finalcert/cert/%s/%s/%s.pdf" % (time_folder,course,name,))
 	
 	course_url=course.replace(" ","%20")
 	#print course_url
@@ -84,7 +87,7 @@ for rw in range(1, worksheet.nrows):
 	print
 	toaddr = email
 	name_array=name.split()
-	print name_array[0]
+	#print name_array[0]
 
 	msg = MIMEMultipart('alternative')
 	 
@@ -144,7 +147,7 @@ Skillspeed Support Team
 	msg.attach(MIMEText(body, 'html'))
 	 
 	filename = "certificate.pdf"
-	attachment = open("/home/skillspeed/finalcert/cert/%s/%s.pdf" % (course,name,), "rb")
+	attachment = open("/home/skillspeed/finalcert/cert/%s/%s/%s.pdf" % (time_folder,course,name,), "rb")
 	 
 	part = MIMEBase('application', 'octet-stream')
 	part.set_payload((attachment).read())
