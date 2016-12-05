@@ -20,11 +20,14 @@ workbook = xlrd.open_workbook(file_name)
 worksheet=workbook.sheet_by_index(0)
 num_row=worksheet.nrows-1
 num_cell=worksheet.ncols-1
+time_folder= time.strftime("%Y-%m-%d")
 for rw in range(1, worksheet.nrows):
 	name,email,grade,course,lic_no = [data.value for data in worksheet.row(rw)]
 	#print lic_no
-	if not os.path.exists('/home/skillspeed/finalcert/cert/%s' % (course,)):
-		os.makedirs('/home/skillspeed/finalcert/cert/%s' % (course,))
+	if not os.path.exists('/home/skillspeed/finalcert/cert/%s' % (time_folder,)):
+		os.makedirs('/home/skillspeed/finalcert/cert/%s' % (time_folder,))
+	if not os.path.exists('/home/skillspeed/finalcert/cert/%s/%s' % (time_folder,course,)):
+		os.makedirs('/home/skillspeed/finalcert/cert/%s/%s' % (time_folder,course,))
 #this will define the ELEMENTS that will compose the template. 
 	elements = [
 	    { 'name': 'company_logo', 'type': 'I', 'x1': 68.0, 'y1': 9.0, 'x2': 150.0, 'y2': 38.0, 'font': None, 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': 'logo', 'priority': 2, },
@@ -38,8 +41,8 @@ for rw in range(1, worksheet.nrows):
 		{ 'name': 'date', 'type': 'T', 'x1': 70.0, 'y1': 99, 'x2': 140, 'y2': 99, 'font': 'Times', 'size': 13.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
 		{ 'name': 'bg', 'type': 'I', 'x1': 0, 'y1': 100, 'x2': 216.0, 'y2': 154, 'font': None, 'size': 0.0, 'bold': 0, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': 'logo', 'priority': 2, },
 		{ 'name': 'sign', 'type': 'T', 'x1': 145, 'y1': 137, 'x2': 197, 'y2': 142, 'font': 'Times', 'size': 10.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
-		{ 'name': 'name', 'type': 'T', 'x1': 86, 'y1': 55, 'x2': 150, 'y2': 64, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
-		{ 'name': 'course', 'type': 'T', 'x1': 86, 'y1': 68, 'x2': 150, 'y2': 74, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
+		{ 'name': 'name', 'type': 'T', 'x1': 83, 'y1': 55, 'x2': 150, 'y2': 64, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'C', 'text': '', 'priority': 3, },
+		{ 'name': 'course', 'type': 'T', 'x1': 113, 'y1': 68, 'x2': 150, 'y2': 74, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'C', 'text': '', 'priority': 3, },
 		{ 'name': 'grade1', 'type': 'T', 'x1': 95, 'y1': 80, 'x2': 150, 'y2': 86, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
 		{ 'name': 'on', 'type': 'T', 'x1': 97.5, 'y1': 95, 'x2': 150, 'y2': 100, 'font': 'Times', 'size': 18.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
 		{ 'name': 'copywrite', 'type': 'T', 'x1': 74, 'y1': 140, 'x2': 150, 'y2': 145, 'font': 'Times', 'size': 8.0, 'bold': 1, 'italic': 0, 'underline': 0, 'foreground': 0, 'background': 0, 'align': 'I', 'text': '', 'priority': 3, },
@@ -48,7 +51,7 @@ for rw in range(1, worksheet.nrows):
 
 	#here we instantiate the template and define the HEADER
 	f = Template(format="A5",orientation ="L", elements=elements,
-		     title="Sample Invoice")
+		     title="Certificate")
 	f.add_page()
 
 	#we FILL some of the fields of the template with the information we want
@@ -72,7 +75,7 @@ for rw in range(1, worksheet.nrows):
 	f["license"]= "License No - " + lic_no
 
 	#and now we render the page
-	f.render("/home/skillspeed/finalcert/cert/%s/%s.pdf" % (course,name,))
+	f.render("/home/skillspeed/finalcert/cert/%s/%s/%s.pdf" % (time_folder,course,name,))
 	
 	course_url=course.replace(" ","%20")
 	#print course_url
@@ -80,9 +83,11 @@ for rw in range(1, worksheet.nrows):
 	#print lic_date
 	#email code
 	fromaddr = "support@skillspeed.com"
-	print name +" " + email+" " + lic_no
+	print name +" " + email +" " + course +" " + lic_no
+	print
 	toaddr = email
-	 
+	name_array=name.split()
+	#print name_array[0]
 
 	msg = MIMEMultipart('alternative')
 	 
@@ -96,7 +101,7 @@ for rw in range(1, worksheet.nrows):
 		<head></head>
 		<body>
 		<p>
-Dear  Learner,
+Dear  %s,
 <br></br>
 <br></br>
 We thank you for attending our <b> %s Classes </b> & hope you enjoyed the sessions much as we enjoyed teaching you.
@@ -106,10 +111,10 @@ We congratulate you on attending both the days of our <b>%s Classes </b>, and th
 <br></br>
 <br></br>
 Add your certificate to Linkedin
-<div><a href="https://www.linkedin.com/profile/add?_ed=0_JhwrBa9BO0xNXajaEZH4q9ZriGQBiq56O8XQeptEb_xAD6iVbtTHBphjlBeRBwz4aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=%s&pfLicenseNo=%s&pfCertStartDate=%s&pfCertFuture=210001&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
+<div><a href="https://www.linkedin.com/profile/add?_ed=0_JhwrBa9BO0xNXajaEZH4q9ZriGQBiq56O8XQeptEb_xAD6iVbtTHBphjlBeRBwz4aSgvthvZk7wTBMS3S-m0L6A6mLjErM6PJiwMkk6nYZylU7__75hCVwJdOTZCAkdv&pfCertificationName=%s&pfLicenseNo=%s&pfCertStartDate=%s&trk=onsite_html" rel="nofollow" target="_blank"><img src="https://download.linkedin.com/desktop/add2profile/buttons/en_US.png" alt="LinkedIn Add to Profile button"></a></div>
 <br></br>
 <br></br>
-If you would like to carry on in this path and learn more and secure a job, then please contact our team about our Advance Course at sales@skillspeed.com.
+If you would like to carry on in this path and learn more and secure a job, then please contact our team about Advance Courses at sales@skillspeed.com.
 <br></br>
 <br></br>
 USA & Rest of World: +1-661-241-4796
@@ -128,6 +133,7 @@ If you have any pending technical queries regarding practicals or VM, please wri
 <br></br>
 Please do spread the word about our sessions and like us on Facebook & leave a comment about your thoughts.
 <br></br>
+<div><a href="http://www.facebook.com/SkillspeedOnline"><img src="http://www.mail-signatures.com/articles/wp-content/themes/emailsignatures/images/facebook-35x35.gif"></a><a href="http://www.linkedin.com/company/skillspeed"><img src="http://www.mail-signatures.com/articles/wp-content/uploads/2014/08/linkedin.png" width="35" height="35"></a></div>
 <br></br>
 <b>Thanks & Regards,
 <br></br>
@@ -136,12 +142,12 @@ Skillspeed Support Team
 </p>
 </body>
 </html>
-""" % (course, course, course, course_url,lic_no,lic_date)
+""" % (name_array[0],course, course, course, course_url,lic_no, lic_date)
 	 
 	msg.attach(MIMEText(body, 'html'))
 	 
 	filename = "certificate.pdf"
-	attachment = open("/home/skillspeed/finalcert/cert/%s/%s.pdf" % (course,name,), "rb")
+	attachment = open("/home/skillspeed/finalcert/cert/%s/%s/%s.pdf" % (time_folder,course,name,), "rb")
 	 
 	part = MIMEBase('application', 'octet-stream')
 	part.set_payload((attachment).read())
